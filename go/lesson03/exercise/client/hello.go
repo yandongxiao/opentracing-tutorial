@@ -8,10 +8,18 @@ import (
 
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/log"
+
 	xhttp "github.com/yurishkuro/opentracing-tutorial/go/lib/http"
 	"github.com/yurishkuro/opentracing-tutorial/go/lib/tracing"
 )
 
+// Since the only change we made in the hello.go app was to replace two
+// operations with HTTP calls, the tracing story remains the same - we get
+// a trace with three spans, all from hello-world service.
+//
+// we need a way to propagate the span context over the wire. The OpenTracing API
+// provides two functions in the Tracer interface to do that,
+// Inject(spanContext, format, carrier) and Extract(format, carrier).
 func main() {
 	if len(os.Args) != 2 {
 		panic("ERROR: Expecting one argument")

@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	if len(os.Args) != 2 {
+	if len(os.Args) != 3 {
 		panic("ERROR: Expecting one argument")
 	}
 
@@ -27,6 +27,8 @@ func main() {
 
 	span := tracer.StartSpan("say-hello")
 	span.SetTag("hello-to", helloTo)
+	greeting := os.Args[2]
+	span.SetBaggageItem("greeting", greeting)
 	defer span.Finish()
 
 	ctx := opentracing.ContextWithSpan(context.Background(), span)

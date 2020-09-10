@@ -5,8 +5,8 @@ import (
 	"io"
 
 	opentracing "github.com/opentracing/opentracing-go"
-	jaeger "github.com/uber/jaeger-client-go"
-	config "github.com/uber/jaeger-client-go/config"
+	jaeger "github.com/uber/jaeger-client-go"   // jaeger client
+	config "github.com/uber/jaeger-client-go/config"    // jaeger client config
 )
 
 // Init returns an instance of Jaeger Tracer that samples 100% of traces and logs all spans to stdout.
